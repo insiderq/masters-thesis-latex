@@ -1,7 +1,17 @@
 \Conclusion
+The cornerstone of this paper is application of Machine Learning techniques, particularly \textbf{clustering}, to a \textbf{large} set consist of transaction data.
 
 \section{Main Findings}
+At first, we built undirected and weighted \textbf{graph} interpreting transactions as interactions between two long-preserving on-chain entities. Then we examine embedding of graph structural information into low-dimension feature space in unsupervised manner. 
+State-of-the-Art achievements in this area are obtained with \textbf{node2vec} embedding method. 
+
+In comparative study of \textbf{pure graph based clustering} algorithms with \textbf{node2vec + K-means} conjunction on Random Graphs we showed that \textit{the latter} is superior not only in terms of \textbf{accuracy} but also in \textbf{scalability} and, accordingly, applicability to \textbf{real-life large} networks.
+
+Finally, a node2vec embeddings for a subset of \textbf{Ethereum Transactions} data were generated. Visual representation of low-dimension vectors is given and clustering performed.
 
 \section{Questions remained open and Further Research}
+Although node2vec algorithm can be \textbf{effectively distributed} and several implementations exist (Python, c++, Apache Spark), mentioned implementation use and store \textbf{complete precomputed transition matrix} effectively requiring \textbf{quadratic}\cite{DBLP:journals/corr/abs-1805-00280} memory consumption, which isn't really necessary for random walk generation. 
 
-\section{Applicability of the Results}
+Real-world use case of Ethereum addresses clustering lacks of \textbf{result interpretation} since the subset used for analysis \textbf{consists a low number of known addresses}. For practical use of required techniques - embedding of a \textbf{much larger} subset is required. That, in order, requires an efficient distributed implementation of \textbf{random walks generation}. 
+
+\textbf{In spite of this, node2vec graph embedding algorithm promises to be a mature tool for applying various machine learning algorithms to a real-life large networks.}
