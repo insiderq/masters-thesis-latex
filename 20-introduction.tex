@@ -1,16 +1,16 @@
 \Introduction
 
 \section{Introduction to Distributed Ledgers}
-Blockchain and more general Distributed Ledges (DLTs) are becoming more popular and complex these days. Today it is a specific type of public owner-less database. In which, each user can create records and they will be validated against set of rules and stored in distributed manner across database maintaining several guarantees after particular consensus algorithm is performed.
+Blockchain and more general \textbf{Distributed Ledges} (DLTs) are becoming more popular and complex these days. Today it is a specific type of public owner-less database. In which, each user can create records and they will be validated against set of rules and stored in distributed manner across database maintaining several guarantees after particular consensus algorithm is performed.
 
 Blockchain is an underlying technology of several modern distributed ledgers using Proof-of-Work consensus. Transactions are packed to blocks and blocks are validated by miners. While some of use cases of DLTs tackle the problems of confidentiality of data in the ledger, others looked for opportunities to use these data. In particular, they enriched identity management functionality. Making the address to represent an on-network entity, capable of interacting with other entities — users or special kind of programs, living in the network, named ”smart-contracts”.
 
-The blockchain data is valuable since it contains financial and social information about users - this attracts researchers, states, which motivates the development of analysis methods.
+The blockchain data is valuable since it \textbf{contains financial and social information} about users - this attracts researchers, states, which motivates the development of analysis methods.
 
 \subsection{Ethereum Blockchain structure}
-Ethereum - is a system for distributed computing, that was the first to allow execution of "smart-contracts" - Turing Complete short script that are stored alongside with transaction data in the ledger. 
+Ethereum - is a system for distributed computing, that was the first to allow execution of "smart-contracts" - \textbf{Turing Complete Scripts} that are stored alongside with transaction data in the ledger. 
 
-Ethereum data is information about the senders and recipients of each transaction, so the network was ideally suited for conducting research.
+Ethereum data is information about the senders and recipients of each transaction, so the network was ideally suited for conducting research. %REF
 \\
 
 \begin{longtable}{|>{\hspace{0pt}}p{0.23\linewidth}|>{\hspace{0pt}}p{0.70\linewidth}|}
@@ -55,7 +55,7 @@ block\_hash                                           & Hash of the block where 
 \end{longtable}
 
 \subsection{Distributed ledger as a graph}
-As it was mentioned before, unlike the UTXO model used, for example, in Bitcoin where all addresses are advises to not be re-used, Ethereum addresses correspond to long-term user on-chain identity. Then Transactions can be considered as interactions between two identities with a specific value and data. One type of that transactions are simple value transfer between users. 
+As it was mentioned before, unlike the UTXO model used, for example, in Bitcoin where all addresses are advises to not be re-used, \textbf{Ethereum addresses correspond to long-term user on-chain identity}. Then Transactions can be considered as interactions between two identities with a specific value and data. One type of that transactions are simple value transfer between users. 
 
 Another kind of transactions are related to smart-contract and represent a simple method calling of a contract. They can be done with no ETH value transferred.\\\\
 
@@ -72,7 +72,7 @@ value                                        & Value transferred in Wei         
 \end{longtable}
 
 
-We can explicitly construct Ethereum network transaction graph model represented as a directed graph, where nodes represent network entities (addresses), whereas weighted edges reflect transactions between them. \\\textit{Note:} Edges of graph are stored immutably that is why new edges may be added to the graph with time, while remove or change of the old ones is impossible.
+We can explicitly construct Ethereum network transaction graph model represented as a directed graph, where nodes represent network entities (addresses), whereas \textbf{weighted edges reflect transactions between them}. \\\textit{Note:} Edges of graph are stored immutably that is why new edges may be added to the graph with time, while remove or change of the old ones is impossible.
 
 Given listed abode transaction fields, graph can be defined as: 
 $$G = \begin{cases} V = \{\ from\_address\ \}\ \bigcup\ \{\ to\_address\ \}   \\ E = \{\ (from\_address,\ to\_address, \ w)\ \} \end{cases} \text{where}\ w = value/10^{18}$$
@@ -85,13 +85,15 @@ $$\begin{array} {lcl}|V| = 51\ 115\ 641\\
 analyze set of transactions in a distributed ledger keeping structural information of the graph. }
 
 \section{Notes on topic relevance}
-Given nature and modern use cases of DLT we can state that we have one of the largest publicly available data sets of financial transactions with unidentified value transfer patterns. Which is crucial for large service operators such as Exchanges, Mining Pools, Banks, Crowdsales or even Law Enforcement. %NOTE
+Given nature and modern use cases of DLT we can state that we have one of the largest publicly available data sets of financial transactions with unidentified value transfer patterns. Which is crucial for large service operators such as Exchanges, Mining Pools, Banks, Crowdsales or even Law Enforcement. %REF
 
 With analyzing information stored in the public database can find it's use in several areas of services such as Anomaly Detection solutions for identification of unusual network activity, Anti-Fraud services for tracking illicit actions and tracking of stolen funds, Risk Management Systems for identifying dangerous cases in network activity such as Chain Splits or network halts.
 
-Another big use-case for transactions data analysis is Market Price prediction system. That is possible since trading activity often happens after movement of funds in a distributed ledger for instance from one Exchange to Another.
+Another big use-case for transactions data analysis is Market Price prediction system. That is possible since trading activity often happens after movement of funds in a distributed ledger for instance from One exchange to Another.
 
 Some of mentioned cases can be implemented with rule-based analytic systems when there is a clear correlation between actions and data semantics. On the other hand, Machine Learning Framework is considered a good approach when we talk about unidentified patterns.
+
+\textbf{Further we examine related work on blockchain data analysis and graph structural information analysis.}
 
 \section{Related work on Blockchain data Analysis}
 
@@ -99,7 +101,61 @@ Some of mentioned cases can be implemented with rule-based analytic systems when
 
 \section{Introduction to embedding}
 
+One of the central challenges on the way of using machine learning on graphs is representing structural information into a suitable form, i.e. as a feature vectors. The traditional approach is to use node degree, summary information and model-dependent features, engineered to represent local neighborhood. 
+
+However this would not allow features to adapt during learning process. Also manually building all features would be time-consuming. Basically, the idea behind traditional approach can be boiled down to using a prepossessing step to get feature vectors from graph.
+
+As an opposite to the traditional approaches, \textbf{representation learning} tries to embed nodes as points in a low-dimensional vector space. During learning the mapping is optimised to reflect the structure of the original graph. This cannot be seen as a separate preprocessing step, rather must be treated as machine learning task itself.
+
+\subsection{An encoder-decoder perspective to node embedding}
+
+\textbf{Node embedding} is the node encoded as low-dimensional vector (of so-called latent space) based on the nodes graph position and neighborhoods.
+
+Let $d$ to be number of dimensions in the latent space $\mathbb{R}^d$, then the \textbf{encoder} is a function:
+$$
+\text{ENC:}\qquad v \to \mathbb{R}^d,
+$$
+that maps nodes to their corresponding vector embedding. 
+
+The \textbf{decoder}, as the name implies, should do the opposite, namely from a set of node embeddings it should decode user-specified graph statistics. In its basic form it is so-called \textbf{pairwise-decoder}:
+$$
+	\text{DEC:}\qquad \mathbb{R}^d \times \mathbb{R}^d \to \mathbb{R}^{+},
+$$
+which quantifies the proximity of the two nodes.
+
+Based on these definitions, for any given pair of embeddings the proximity between corresponding nodes can be reconstructed: 
+$$
+   s_G(v_i, v_j) \simeq \mathrm{DEC}(z_i, z_j) 
+     = \mathrm{DEC}(\mathrm{ENC}(v_i), \mathrm{ENC}(v_j)),
+$$
+where $s_G$ --- user-defined proximity function on graph $G$.
+
+The quality of proximity reconstruction is assessed using loss function: 
+$$
+   \mathrm{L} = \sum_{(v_i, v_j) \in \mathrm{D}} \ell\left(
+     \mathrm{DEC}(z_i, z_j), s_G(v_i, v_j)
+   \right)
+$$
+
+Process of representation learning is defined as finding encoder and decoder function parameters to minimize this value.
+
+\subsection{Types of node embedding}
+
+The particular node embedding is defined by specifying encoder, decoder, loss function and set of parameters to optimize. In most cases encoder can be represented as a matrix multiplication: 
+$$
+  \mathrm{ENC}(v_i) = \mathbf{Z} v_i, \qquad \mathbf{Z} \in \mathbb{R}^{d \cdot |V|}
+$$
+Encoding approaches that rely on this are called "direct encoding approaches". %REF
+
+Random walk approaches are different and based on random walk statistics, instead of fixed deterministic distance measures. \textbf{Their main introduction is optimization of the node embeddings the way that two nodes would have close embeddings if several short random walks go through both of them}
+
+\textbf{Node2Vec} is a random walk based embedding algorithm that achieves \textbf{scalable} State-of-the-Art performance on large graphs.%REF 
+
 \section{Problem statement}
-Object - Finite metric space to Euclidean space Mapping
-Subject 
-Method??
+In an ideal situation in order to apply particular Machine Learning technique to the large graph the following steps need to be taken:
+\begin{enumerate}
+\item Use out-of-the-box embedding implementation on the graph data
+\item Feed the results into ordinary ML algorithm that requires dataset of vectors
+\end{enumerate}
+
+\textbf{In this paper we focus on real-life practical applicability of Node2Vec algorithm and it's features in case of clustering task.} We compare of graph-based clustering methods with ML clustering applied to embeddings on several Random Graphs. Then subset of Ethereum transactions data is analyzed with the same method.

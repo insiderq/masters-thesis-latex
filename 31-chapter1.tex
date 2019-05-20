@@ -4,12 +4,12 @@
 
 \subsection{Random Walks Generation}
 \subsection{Word2Vec}
-\subsection{Reference Implementation Caveats}
-RAM Consumption
 
 \subsection{Parameters Description}
 
-
+\subsection{Reference Implementation Caveats}
+RAM Consumption
+SPARK implementation is outdated, it approximates embeding and introduces limit of maximum node degree and still stores precomputed transition probablities. 
 
 
 
@@ -23,3 +23,4 @@ RAM Consumption
 % где $f(w_1, w_2, w_3)$ --- частота появления триграммы $(w_1, w_2, w_3)$ в корпусе, $f(w_1, w_2)$ --- частота появления биграммы $(w_1, w_2)$.
 
 \section{Conclusions on chapter 1}
+In theory node2vec is cool, but it lacks truly distributed implementation
