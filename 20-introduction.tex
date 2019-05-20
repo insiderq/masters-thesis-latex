@@ -1,21 +1,94 @@
 \Introduction
 
 \section{Introduction to Distributed Ledgers}
-Возможно, самый большой публичный датасет данных о транзакциях. Псевдонимность. Доступность данных, структура.
-Рост популярности, информация о количестве пользователей, порядках размеров данных, количестве транзакций. 
+Blockchain and more general Distributed Ledges (DLTs) are becoming more popular and complex these days. Today it is a specific type of public owner-less database. In which, each user can create records and they will be validated against set of rules and stored in distributed manner across database maintaining several guarantees after particular consensus algorithm is performed.
+
+Blockchain is an underlying technology of several modern distributed ledgers using Proof-of-Work consensus. Transactions are packed to blocks and blocks are validated by miners. While some of use cases of DLTs tackle the problems of confidentiality of data in the ledger, others looked for opportunities to use these data. In particular, they enriched identity management functionality. Making the address to represent an on-network entity, capable of interacting with other entities — users or special kind of programs, living in the network, named ”smart-contracts”.
+
+The blockchain data is valuable since it contains financial and social information about users - this attracts researchers, states, which motivates the development of analysis methods.
 
 \subsection{Ethereum Blockchain structure}
-Выбор пал на эфириум - адреса ниболее соответствуют идентичностям людей в отличии от модели UTXO, в которой адреса являются одноразовыми. 
+Ethereum - is a system for distributed computing, that was the first to allow execution of "smart-contracts" - Turing Complete short script that are stored alongside with transaction data in the ledger. 
 
-account, hash, transaction, block, nonce, 
-Case with Zero Values transacted. Contracts
+Ethereum data is information about the senders and recipients of each transaction, so the network was ideally suited for conducting research.
+
+\begin{longtable}{|>{\hspace{0pt}}p{0.23\linewidth}|>{\hspace{0pt}}p{0.70\linewidth}|}
+\hline
+\rowcolor[rgb]{0.961,0.961,0.961} \textbf{Field Name} & \textbf{Description}                                                                      \endfirsthead 
+\hline
+hash                                                  & Hash of the transaction                                                                   \\ 
+\hline
+nonce                                                 & The number of transactions made by the sender prior to this one                           \\ 
+\hline
+transaction\_index                                    & Integer of the transactions index position in the block                                   \\ 
+\hline
+from\_address                                         & Address of the sender                                                                     \\ 
+\hline
+to\_address                                           & Address of the receiver. null when its a contract creation transaction                    \\ 
+\hline
+value                                                 & Value transferred in Wei                                                                  \\ 
+\hline
+gas                                                   & Gas provided by the sender                                                                \\ 
+\hline
+gas\_price                                            & Gas price provided by the sender in Wei                                                   \\ 
+\hline
+input                                                 & The data sent along with the transaction                                                  \\ 
+\hline
+cumulative\_gas                                       & The total amount of gas used when this transaction was executed in the block              \\ 
+\hline
+receipt\_gas\_used                                    & The amount of gas used by this specific transaction alone                                 \\ 
+\hline
+contract\_address                                     & The contract address created, if the transaction was a contract creation, otherwise null  \\ 
+\hline
+receipt\_root                                         & 32 bytes of post-transaction stateroot (pre Byzantium)                                    \\ 
+\hline
+receipt\_status                                       & Either 1 (success) or 0 (failure) (post Byzantium)                                        \\ 
+\hline
+block\_timestamp                                      & Timestamp of the block where this transaction was in                                      \\ 
+\hline
+block\_number                                         & Block number where this transaction was in                                                \\ 
+\hline
+block\_hash                                           & Hash of the block where this transaction was in                                           \\
+\hline
+\caption{Fields of Transaction Record}\\ 
+\end{longtable}
+
 \subsection{Distributed ledger as a graph}
-From, to, value
+As it was mentioned before, unlike the UTXO model used, for example, in Bitcoin where all addresses are advises to not be re-used, Ethereum addresses correspond to long-term user on-chain identity. Then Transactions can be considered as interactions between two identities with a specific value and data. One type of that transactions are simple value transfer between users. 
+
+Another kind of transactions are related to smart-contract and represent a simple method calling of a contract. They can be done with no ETH value transferred.
+
+Given that we can explicitly construct Ethereum network transaction graph model represented as a directed graph, where nodes represent network entities (addresses), whereas weighted edges reflect transactions between them. 
+
+Note: Edges of graph are stored immutably that is why new edges may be added to the graph with time, while remove or change of the old ones is impossible.
+
+\begin{longtable}{|>{\hspace{0pt}}p{0.23\linewidth}|>{\hspace{0pt}}p{0.70\linewidth}|} 
+\hline
+\rowcolor[rgb]{0.961,0.961,0.961} Field Name & Description                                                             \endfirsthead 
+\hline
+from\_address                                & Address of the sender                                                   \\ 
+\hline
+to\_address                                  & Address of the receiver. null when its a contract creation transaction  \\ 
+\hline
+value                                        & Value transferred in Wei                                                \\
+\hline
+\end{longtable}
+
+Given listed abode transaction fields, graph can be defined as: 
+$$\begin{array} {lcl} V & = & \{\ from\_address\ \}\ \bigcup\ \{\ to\_address\ \}   \\ E & = & \{\ (from\_address,\ to\_address),\ weight=value/10^{18}\ \} \end{array}$$
+
+At the time of writing, 
+$$\begin{array} {lcl}|V| = 51\ 115\ 641\\
+|E| = 450\ 528\ 110$$\end{array}$$
 
 \section{Notes on topic relevance}
-Anomaly detection, anti-fraud, risk management
-Track of funds. Analytics
+Given nature and modern use cases of DLT we can state that we have one of the largest publicly available data sets of financial transactions with unidentified value transfer patterns. Which is crucial for large service operators such as Exchanges, Mining Pools, Banks, Crowdsales or even Law Enforcement. %NOTE
 
+With analyzing information stored in the public database can find it's use in several areas of services such as Anomaly Detection solutions for identification of unusual network activity, Anti-Fraud services for tracking illicit actions and tracking of stolen funds, Risk Management Systems for identifying dangerous cases in network activity such as Chain Splits or network halts.
+
+Another big use-case for transactions data analysis is Market Price prediction system. That is possible since trading activity often happens after movement of funds in a distributed ledger for instance from one Exchange to Another.
+
+Some of mentioned cases can be implemented with rule-based analytic systems when there is a clear correlation between actions and data semantics. On the other hand, Machine Learning Framework is considered a good approach when we talk about unidentified patterns.
 
 \section{Related work on Blockchain data Analysis}
 
@@ -24,6 +97,6 @@ Track of funds. Analytics
 \section{Introduction to embedding}
 
 \section{Problem statement}
-Object
+Object - Finite metric space to Euclidean space Mapping
 Subject 
 Method??
