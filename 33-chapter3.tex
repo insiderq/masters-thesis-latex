@@ -1,6 +1,8 @@
 \chapter{Ethereum Transaction Graph Analysis}\label{chap:3}
 
-In this chapter we apply node2vec to obtain structural information from Ethereum network transaction graph. Given the large amount of data that is stored in the blockchain, we make use of the Google BigQuery service to extract only a small relevant subset of nodes and reconstruct transaction graph. After that the node2vec was used to embed this graph into a low-dimensional vector space. The space of embeddings is used to clusterize Ethereum addresses.
+In this chapter we apply node2vec to obtain structural information from Ethereum network transaction graph. Given the large amount of data that is stored in the blockchain, we make use of the Google BigQuery service to extract only a small relevant subset of nodes and reconstruct transaction graph. After that the node2vec was used to embed this graph into a low-dimensional vector space. The space of embeddings is used to cluster Ethereum addresses.
+
+\textit{Proceedings of this chapter are preliminary approved for presentation at SYRCoSE Software Engineering Colloquium 2019 held in Saratov, Russia} \cite{salnikov2019node2vec}
 
 \section{Obtaining the Data}
 We used Google's BigQuery service to obtain only interesting subset of data through querying block-chain data with SQL. Google maintains the up-to-date complete Ethereum block-chain data on their servers and provides a structural query service to allow data scientists analyze the data without the overhead of downloading gigabytes of data and keeping it up-to-date. 
@@ -27,7 +29,7 @@ After the feature representations has been constructed using node2vec, we can us
 
 Using unnecessarily high number of dimensions for a feature space inherently implies ambiguities and the observed feature vectors is largely determined by random factors, making it harder or even impossible to come up with a meaningful interpretations for them.
 
-In our case, the optimal size of feature space is appeared to be 3, leading to highly reproducible identifiable patterns in the results as shown on the scatterplot matrix below.
+In our case, the optimal size of feature space is appeared to be 3, leading to highly reproducible identifiable patterns in the results as shown on the scatter plot matrix below.
 
 \begin{figure}[H]   \centering
     \includegraphics[width=0.7\linewidth]{plots/ScatterplotMatrix1.png}

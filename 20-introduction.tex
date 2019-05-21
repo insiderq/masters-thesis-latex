@@ -1,16 +1,16 @@
 \Introduction
 
 \section{Introduction to Distributed Ledgers}
-Blockchain and more general \textbf{Distributed Ledges} (DLTs) are becoming more popular and complex these days. Today it is a specific type of public owner-less database. In which, each user can create records and they will be validated against set of rules and stored in distributed manner across database maintaining several guarantees after particular consensus algorithm is performed.
+Blockchain and more general \textbf{Distributed Ledges} (DLTs) are becoming more popular and complex these days. Today it is a specific type of public owner-less database. In which, each user can create records that further will be validated against set of rules and stored in distributed manner across database maintaining several guarantees after particular consensus algorithm is performed.
 
-Blockchain is an underlying technology of several modern distributed ledgers using Proof-of-Work consensus. Transactions are packed to blocks and blocks are validated by miners. While some of use cases of DLTs tackle the problems of confidentiality of data in the ledger, others looked for opportunities to use these data. In particular, they enriched identity management functionality. Making the address to represent an on-network entity, capable of interacting with other entities — users or special kind of programs, living in the network, named ”smart-contracts”.
+Blockchain is an underlying technology of several modern distributed ledgers using Proof-of-Work consensus. Transactions are packed into blocks and blocks are validated by miners. While some of use cases of DLTs tackle the problems of confidentiality of data in the ledger, others looked for opportunities to use these data. In particular, they enriched identity management functionality. Making the address to represent an on-chain entity, capable of interacting with other entities — users or special kind of programs, living in the network, named ”smart-contracts”.
 
-The blockchain data is valuable since it \textbf{contains financial and social information} about users - this attracts researchers, states, which motivates the development of analysis methods.
+The blockchain data is valuable since it \textbf{contains financial and social information} about users - this attracts researchers, which motivates the development of analysis methods.
 
 \subsection{Ethereum Blockchain structure}
 Ethereum - is a system for distributed computing, that was the first to allow execution of "smart-contracts"\ -\ \textbf{Turing Complete Scripts} that are stored alongside with transaction data in the ledger. 
 
-Ethereum data\cite{will_price_2019} is information about the senders and recipients of each transaction, so the network was ideally suited for conducting research. %REF
+Ethereum data\cite{will_price_2019} contains information about the senders and recipients of each transaction, so the network was ideally suited for conducting research. %REF
 \\
 
 \begin{longtable}{|>{\hspace{0pt}}p{0.23\linewidth}|>{\hspace{0pt}}p{0.70\linewidth}|}
@@ -82,18 +82,18 @@ $$\begin{array} {lcl}|V| = 51\ 115\ 641\\
 |E| = 450\ 528\ 110$$\end{array}$$
 
 \textbf{Constructed graph contains useful patterns of money flow, semantics of which cannot be clearly interpreted. That leads us to the following paper task description:
-analyze set of transactions in a distributed ledger keeping structural information of the graph. }
+analyze set of transactions in a distributed ledger keeping structural information of the network. }
 
 \section{Notes on topic relevance}
 Given nature and modern use cases of DLT we can state that we have one of the largest publicly available data sets of financial transactions with unidentified value transfer patterns. Which is crucial for large service operators such as Exchanges, Mining Pools, Banks, Crowdsales or even Law Enforcement. \cite{kuzuno2017blockchain}
 
-With analyzing information stored in the public database can find it's use in several areas of services such as Anomaly Detection solutions for identification of unusual network activity, Anti-Fraud services for tracking illicit actions and tracking of stolen funds, Risk Management Systems for identifying dangerous cases in network activity such as Chain Splits or network halts.
+With analyzing information stored in the public database can find it's use in several areas of services such as Anomaly Detection solutions for identification of unusual network activity, Anti-Fraud services for tracking illicit actions or stolen funds, Risk Management Systems for identifying dangerous cases in network activity such as Chain Splits or network halts.
 
-Another big use-case for transactions data analysis is Market Price prediction system. That is possible since trading activity often happens after movement of funds in a distributed ledger for instance from One exchange to Another.
+Another big use-case for transactions data analysis is Market Price prediction system. That is possible since trading activity often happens after movement of funds in a distributed ledger for instance from one exchange to another.
 
 Some of mentioned cases can be implemented with rule-based analytic systems when there is a clear correlation between actions and data semantics. On the other hand, Machine Learning Framework is considered a good approach when we talk about unidentified patterns.
 
-\textbf{Further we examine related work on blockchain data analysis and graph structural information analysis.}
+Further we examine related work on blockchain data analysis and graph structural information analysis.
 
 \section{Related work on Blockchain network analysis}
 Probably the first network analysis of the cryptocurrency transaction network was performed in \cite{kondor2014rich}. The authors analyze the structure of the transaction network by measuring network characteristics over time, such as the degree distribution, degree correlations and clustering. They find that linear preferential attachment drives the growth of the network. They also study the dynamics taking place on the transaction network, i.e. the flow of money, temporal patterns and the wealth accumulation. Investigating the microscopic statistics of money movement, they find that sublinear preferential attachment governs the evolution of the wealth distribution.
@@ -155,7 +155,7 @@ $$
 $$
 Encoding approaches that rely on this are called "direct encoding approaches". \cite{DBLP:journals/corr/abs-1709-05584}
 
-Random walk approaches are different and based on random walk statistics, instead of fixed deterministic distance measures. \textbf{Their main introduction is optimization of the node embeddings the way that two nodes would have close embeddings if several short random walks go through both of them}
+Random walk approaches are different and based on random walk statistics, instead of fixed deterministic distance measures. \textbf{Their main introduction is optimization of the node embeddings the way that two nodes would have close embedding vectors if they occur closely during random walking through the network}
 
 \textbf{node2vec}\cite{DBLP:journals/corr/GroverL16} is a random walk based embedding algorithm that achieves \textbf{scalable} State-of-the-Art performance on large graphs.
 

@@ -54,7 +54,7 @@ The two parameters have the following meaning:
 \end{figure}
 
 \section{Embedding Generation}
-In case of text analysis study\cite{mikolov2013efficient} Skip-gram model is introduced for unsupervised representation learning of each word. Word2vec algorithm consist of the following steps. At first, set of word neighbors need to be collected. This can be easily achieved taking $context_{size}$ words before and $context_{size}$ words after considered word in the sentennce. After that, optimization problem maintaining neighbor words in a sentence close in an embedded feature space is formulated and solved using Stochastic Gradient Descent (SGD). That's how embedding representation of the words is obtained. 
+In case of text analysis study\cite{mikolov2013efficient} Skip-gram model is introduced for unsupervised representation learning of each word. Word2vec algorithm consist of the following steps. At first, set of word neighbors need to be collected. This can be easily achieved taking $context\_size$ words before and $context\_size$ words after considered word in the sentence. After that, optimization problem maintaining \textit{neighbor words in a sentence} relatively close to each other in embedded feature space is formulated and solved using Stochastic Gradient Descent (SGD). That's how embedding representation of the words is obtained. 
 
 node2vec utilizes \textbf{word2vec} algorithm. The idea behind utilization is \textbf{substitute neighbor words} in a text with \textbf{neighbor nodes} sampled during \textbf{random walk} process.
 

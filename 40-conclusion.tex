@@ -1,5 +1,5 @@
 \Conclusion
-The cornerstone of this paper is application of Machine Learning techniques, particularly \textbf{clustering}, to a \textbf{large} set consist of transaction data.
+The cornerstone of this paper is application of Machine Learning techniques, particularly \textbf{clustering}, to a \textbf{large} dataset consist of cryptocurrency transactions.
 
 \section{Main Findings}
 At first, we built undirected and weighted \textbf{graph} interpreting transactions as interactions between two long-preserving on-chain entities. Then we examine embedding of graph structural information into low-dimension feature space in unsupervised manner. 
@@ -7,11 +7,27 @@ State-of-the-Art achievements in this area are obtained with \textbf{node2vec} e
 
 In comparative study of \textbf{pure graph based clustering} algorithms with \textbf{node2vec + K-means} conjunction on Random Graphs we showed that \textit{the latter} is superior not only in terms of \textbf{accuracy} but also in \textbf{scalability} and, accordingly, applicability to \textbf{real-life large} networks.
 
-Finally, a node2vec embeddings for a subset of \textbf{Ethereum Transactions} data were generated. Visual representation of low-dimension vectors is given and clustering performed.
+Finally, node2vec embeddings for a subset of \textbf{Ethereum Transactions} data were generated. Visual representation of low-dimension vectors is given and clustering performed.
 
-\section{Questions remained open and Further Research}
-Although node2vec algorithm can be \textbf{effectively distributed} and several implementations exist (Python, c++, Apache Spark), mentioned implementation use and store \textbf{complete precomputed transition matrix} effectively requiring \textbf{quadratic}\cite{DBLP:journals/corr/abs-1805-00280} memory consumption, which isn't really necessary for random walk generation. 
+\section{Questions remained open}
+Although node2vec algorithm can be \textbf{effectively distributed} and several implementations exist (Python, c++, Apache Spark), all of them use and store \textbf{complete precomputed transition matrix} effectively requiring \textbf{quadratic}\cite{DBLP:journals/corr/abs-1805-00280} memory consumption, which isn't  necessary for random walk generation. 
 
-Real-world use case of Ethereum addresses clustering lacks of \textbf{result interpretation} since the subset used for analysis \textbf{consists a low number of known addresses}. For practical use of required techniques - embedding of a \textbf{much larger} subset is required. That, in order, requires an efficient distributed implementation of \textbf{random walks generation}. 
+Real-world use case of Ethereum addresses clustering conducted lacks of \textbf{result interpretation} since the subset used for analysis \textbf{consists a low number of known addresses}. For practical use of required techniques - embedding of a \textbf{much larger} subset is required. That, in order, requires an efficient distributed implementation of \textbf{random walks generation}. 
 
-\textbf{In spite of this, node2vec graph embedding algorithm promises to be a mature tool for applying various machine learning algorithms to a real-life large networks.}
+\section{Note on Further Research}
+In this paper we showed that node2vec graph embedding algorithm promises to be a \textbf{mature tool} for applying various machine learning algorithms to a real-life large networks.
+
+By definition, representation learning technique node2vec \textbf{is aimed at preserving small relative distance} between vertices that \textbf{co-occur during random walking} over graph. This is not the first attempt to construct embedding vectors using random walk procedure as shown in \cite{DBLP:journals/corr/abs-1709-05584} and main distinct feature of node2vec is introduction of \textbf{biased second-order random walk} procedure effectively combining BFS and DFS approaches.
+
+That is why \textbf{we believe} that the following modification of random walk procedure can show considerable results on real-life transaction network case study:
+\begin{itemize}
+    \item Consider reversed direction of a transaction in directed graph
+    \item Consider weights of transactions proportional to value transacted 
+    \item Specially treat case with data-only (0 value) transactions
+    \item Consider time of transaction occurrence and \textbf{walk-out from node only along transactions that existed prior to walk-in transaction}.
+\end{itemize}
+
+That modification of walking procedure going \textit{backwards in time by incoming transactions} fed to node2vec would place nodes in a relative distance in terms of \textit{source of funds}. 
+
+Subsequent analysis of obtained embeddings combined with \textbf{well-known addresses} participated in \textbf{security breaches or theft} leads to \textbf{very practical} applications of this method.
+
